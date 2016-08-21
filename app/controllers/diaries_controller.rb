@@ -1,4 +1,6 @@
 class DiariesController < OpenReadController
+# class DiariesController < ProtectedController
+
   # skip_before_action :authenticate, only: :create
   before_action :set_diary, only: [:show, :update, :destroy]
 
@@ -34,7 +36,7 @@ class DiariesController < OpenReadController
   # PATCH/PUT /diaries/1
   # PATCH/PUT /diaries/1.json
   def update
-    @diary = Diary.find(params[:id])
+    # @diary = Diary.find(params[:id])
 
     if @diary.update(diary_params)
       head :no_content
