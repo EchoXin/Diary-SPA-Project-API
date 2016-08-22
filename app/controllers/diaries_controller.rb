@@ -1,5 +1,5 @@
-class DiariesController < OpenReadController
-# class DiariesController < ProtectedController
+# class DiariesController < OpenReadController
+class DiariesController < ProtectedController
 
   # skip_before_action :authenticate, only: :create
   before_action :set_diary, only: [:show, :update, :destroy]
@@ -64,6 +64,6 @@ class DiariesController < OpenReadController
     end
 
     def diary_params
-      params.require(:diary).permit(:title, :content)
+      params.require(:diary).permit(:title, :content, :weather)
     end
 end
