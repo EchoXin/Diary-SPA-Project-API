@@ -1,6 +1,8 @@
+#
 class UsersController < ProtectedController
 
 # class UsersController < OpenReadController
+
   skip_before_action :authenticate, only: [:signup, :signin]
 
   # POST '/sign-up'

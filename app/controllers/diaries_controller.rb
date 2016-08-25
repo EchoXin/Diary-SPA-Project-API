@@ -1,6 +1,6 @@
 # class DiariesController < OpenReadController
 class DiariesController < ProtectedController
-
+  WEATHER_API = 'http://api.openweathermap.org/data/2.5/weather?q=Boston,us&appid=f1c0d3b7cb3bd30991614b391a2ddf52'.freeze
   # skip_before_action :authenticate, only: :create
   before_action :set_diary, only: [:show, :update, :destroy]
 
@@ -24,8 +24,9 @@ class DiariesController < ProtectedController
   #   @diary = Diary.new(diary_params)
 
   def create
-    @diary = current_user.diaries.build(diary_params)
+    with_weather = diary_params.merge(weather: get_weather)
 
+    @diary = current_user.diaries.build(with_weather)
     if @diary.save
       render json: @diary, status: :created, location: @diary
     else
@@ -55,12 +56,13 @@ class DiariesController < ProtectedController
 
   private
 
-    # def set_diary
-    #   @diary = Diary.find(params[:id])
-    # end
+    def get_weather
+      resp = HTTParty.get WEATHER_API
+      resp['weather'][0]['icon']
+    end
 
     def set_diary
-     @diary = current_user.diaries.find(params[:id])
+      @diary = current_user.diaries.find(params[:id])
     end
 
     def diary_params

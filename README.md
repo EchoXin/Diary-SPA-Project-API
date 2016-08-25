@@ -1,8 +1,12 @@
 
 
-# Echo Diary API
+# Front-end Link
 
-Front-end github link https://github.com/EchoXin/Diary-SPA-Project
+[Live App](https://github.com/EchoXin/Diary-SPA-Project)
+
+## Third Party API
+
+[OpenWeatherMap API](http://api.openweathermap.org/data/2.5/weather?q=Boston,us&appid=)
 
 ## Database table
 
